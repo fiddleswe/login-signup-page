@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Video</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-image: url('5k.jpeg');
+            background-size: cover;
+            background-position: center; 
+            background-attachment: fixed;
+            color: white; 
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-direction: row-reverse; 
+        }
+        .header h1 {
+            color: whitesmoke;
+            margin-left: 10px; 
+        }
+        #logo {
+            width: 40px;
+            height: 40px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        #video {
+            display: none;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Verify to access to Youtube</h1>
+        <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube Logo">
+    </div>
+
+    <p>Please enter your age (1-99):</p>
+    <input type="number" id="ageInput" min="1" max="99" placeholder="Enter your age" required>
+    <button onclick="verifyAge()">Verify</button>
+
+    <div id="result"></div>
+
+    <div id="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/i5-AbnklaGw?si=ylvf5jqir4CwMwEv" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        function verifyAge() {
+            const age = document.getElementById('ageInput').value;
+            const resultDiv = document.getElementById('result');
+            const videoDiv = document.getElementById('video');
+
+            if (age >= 1 && age <= 99) {
+                if (age < 18) {
+                    resultDiv.textContent = "No access. You must be 18 or older.";
+                    resultDiv.style.color = "red";
+                    videoDiv.style.display = "none";
+                } else {
+                    resultDiv.style.display = "none";
+                    videoDiv.style.display = "block"; 
+                }
+            } else {
+                resultDiv.textContent = "Please enter a valid age between 1 and 99.";
+                resultDiv.style.color = "orange";
+                videoDiv.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
